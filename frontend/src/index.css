@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+section {
+  position: relative;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.7),
+      rgba(255,255,255,0.7)
+    ),
+
+    linear-gradient(
+      to right,
+      rgba(14,165,233,0.05) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      to bottom,
+      rgba(14,165,233,0.05) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    cover,
+    60px 60px,
+    60px 60px;
+
+  background-color: #f8fbff;
+}
+
+nav {
+  transition: all 0.3s ease;
+}
+
+nav:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
