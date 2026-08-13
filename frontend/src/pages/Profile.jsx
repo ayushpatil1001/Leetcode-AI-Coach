@@ -322,9 +322,9 @@ return (
         w-full
         h-full
         bg-gradient-to-r
-        from-sky-500
-        via-blue-500
-        to-indigo-600
+        from-sky-400
+        via-sky-500
+        to-sky-600
       "
     />
 
@@ -873,8 +873,8 @@ View Dashboard
             px-4
             py-2
             rounded-full
-            bg-indigo-100
-            text-indigo-700
+            bg-sky-100
+            text-sky-800
           "
         >
           {interest.trim()}

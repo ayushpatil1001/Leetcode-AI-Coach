@@ -17,7 +17,6 @@ export default function Home() {
     <div className="relative min-h-screen bg-gradient-to-b from-sky-50/40 via-white to-slate-50 overflow-hidden">
 
       <InteractiveBackground />
-
       <Navbar />
 
       {/* Static Ambient Orbs */}
@@ -39,10 +38,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight">
-              Learn <span className="text-sky-500 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">Smarter</span>
+              Learn <span className="text-sky-500 bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 bg-clip-text text-transparent">Smarter</span>
             </h2>
 
-            <p className="mt-5 text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-5 text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
               Everything you need to improve your problem-solving skills
               without relying on copied solutions.
             </p>
@@ -86,10 +85,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="
-              bg-white/80
-              backdrop-blur-xl
-              border
-              border-sky-100/80
+              liquid-glass
               rounded-[40px]
               shadow-2xl
               p-12
@@ -104,7 +100,7 @@ export default function Home() {
               Ready To Master LeetCode?
             </h2>
 
-            <p className="mt-6 text-lg text-slate-500 max-w-xl mx-auto relative z-10">
+            <p className="mt-6 text-lg text-slate-500 max-w-xl mx-auto relative z-10 font-medium">
               Start solving problems with AI guidance,
               structured thinking, and detailed feedback.
             </p>
@@ -117,18 +113,15 @@ export default function Home() {
                   px-8
                   py-4
                   rounded-2xl
-                  bg-gradient-to-r
-                  from-sky-500
-                  to-blue-600
+                  liquid-button
                   text-white
-                  font-semibold
+                  font-extrabold
                   shadow-lg
-                  hover:shadow-sky-500/25
                   transition-all
                   duration-300
                 "
               >
-                Try AI Coach
+                Try AI Coach ⚡
               </Link>
             </motion.div>
 

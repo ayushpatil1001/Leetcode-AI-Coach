@@ -1,40 +1,7 @@
-export default function DashboardLayout({
-
-    sidebar,
-
-    children
-
-}) {
-
-    return (
-
-        <div
-            className="
-                max-w-[1500px]
-                mx-auto
-                px-6
-                pt-32
-                pb-20
-            "
-        >
-
-            <div
-                className="
-                    grid
-                    lg:grid-cols-[350px_1fr]
-                    gap-8
-                    items-start
-                "
-            >
-
-                {sidebar}
-
-                {children}
-
-            </div>
-
-        </div>
-
-    );
-
+export default function DashboardLayout({ children }) {
+  return (
+    <div className="max-w-7xl mx-auto px-4 md:px-8 pt-32 pb-24 relative z-10">
+      {children}
+    </div>
+  );
 }

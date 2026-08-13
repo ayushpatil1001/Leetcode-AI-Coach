@@ -129,8 +129,8 @@ export default function HowItWorks() {
                   <Clock className="w-5 h-5 text-emerald-500" />
                   <span className="text-xs font-bold text-slate-700">3. Computing Time & Space complexity</span>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-indigo-50 rounded-2xl border border-indigo-100">
-                  <Sparkles className="w-5 h-5 text-indigo-500" />
+                <div className="flex items-center gap-3 p-3 bg-sky-50 rounded-2xl border border-sky-100">
+                  <Sparkles className="w-5 h-5 text-sky-500" />
                   <span className="text-xs font-bold text-slate-700">4. Finalizing step-by-step solution</span>
                 </div>
               </motion.div>

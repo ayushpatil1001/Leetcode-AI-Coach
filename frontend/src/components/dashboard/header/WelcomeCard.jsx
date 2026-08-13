@@ -18,9 +18,9 @@ export default function WelcomeCard({ dashboard }) {
       className="
         rounded-3xl
         bg-gradient-to-r
-        from-sky-500
-        via-blue-600
-        to-indigo-600
+        from-sky-400
+        via-sky-500
+        to-sky-600
         p-8
         md:p-10
         text-white
@@ -41,7 +41,7 @@ export default function WelcomeCard({ dashboard }) {
         </p>
       </div>
 
-      <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-white/15 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
     </motion.div>
   );
 }

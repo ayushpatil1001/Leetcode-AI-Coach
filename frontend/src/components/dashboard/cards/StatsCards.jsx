@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import CountUp from "react-countup";
+import CountUpRaw from "react-countup";
 import { CheckCircle2, Circle, Flame, Trophy } from "lucide-react";
+
+const CountUp = typeof CountUpRaw === "function" ? CountUpRaw : (CountUpRaw?.default || null);
 
 export default function StatsCards({ dashboard }) {
   if (!dashboard?.profile?.matchedUser) {
@@ -71,7 +73,11 @@ export default function StatsCards({ dashboard }) {
             </h3>
 
             <div className="text-4xl font-extrabold text-slate-800 tracking-tight mt-2">
-              <CountUp end={card.value} duration={1.8} />
+              {CountUp ? (
+                <CountUp end={card.value} duration={1.8} />
+              ) : (
+                card.value ? card.value.toLocaleString() : 0
+              )}
             </div>
           </motion.div>
         );

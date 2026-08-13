@@ -34,10 +34,9 @@ export default function Roadmap() {
   };
 
   return (
-    <div className="min-h-screen pb-24 bg-gradient-to-b from-sky-50/40 via-white to-slate-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50/40 via-white to-slate-50 relative overflow-hidden pb-24">
 
       <InteractiveBackground />
-
       <Navbar />
 
       {/* Static Ambient Orbs */}
@@ -55,17 +54,17 @@ export default function Roadmap() {
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 bg-sky-100/80 text-sky-600 px-4 py-2 rounded-full mb-6 font-medium text-sm border border-sky-200/50 cursor-default shadow-xs"
+            className="inline-flex items-center gap-2 bg-sky-100 text-sky-700 px-4 py-2 rounded-full mb-6 font-extrabold text-xs border border-sky-200 cursor-default shadow-xs"
           >
             <Compass size={18} />
             AI Powered Learning Paths
           </motion.div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold text-slate-800 tracking-tight">
-            🧠 AI <span className="text-sky-500 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">Roadmaps</span>
+            🧠 AI <span className="text-sky-500 bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 bg-clip-text text-transparent">Roadmaps</span>
           </h1>
 
-          <p className="text-center text-slate-500 mt-4 text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-center text-slate-500 mt-4 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
             Master any data structure or algorithm concept step-by-step from beginner to expert.
           </p>
         </motion.div>
@@ -89,7 +88,7 @@ export default function Roadmap() {
               rounded-2xl
               border
               border-sky-200
-              bg-white/90
+              bg-white/95
               backdrop-blur-xl
               shadow-lg
               hover:shadow-xl
@@ -98,6 +97,8 @@ export default function Roadmap() {
               outline-none
               transition-all
               text-slate-800
+              font-semibold
+              text-sm
             "
           />
 
@@ -111,19 +112,17 @@ export default function Roadmap() {
               px-8
               rounded-2xl
               text-white
-              font-semibold
-              bg-gradient-to-r
-              from-sky-500
-              to-blue-600
+              font-extrabold
+              text-sm
+              liquid-button
               shadow-lg
-              hover:shadow-sky-500/25
               transition-all
               cursor-pointer
               disabled:opacity-60
               whitespace-nowrap
             "
           >
-            {loading ? "Generating..." : "Generate Roadmap"}
+            {loading ? "Generating..." : "Generate Roadmap ⚡"}
           </motion.button>
 
         </motion.div>
@@ -137,7 +136,7 @@ export default function Roadmap() {
           >
             <div className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-xl rounded-2xl px-8 py-5 shadow-xl border border-sky-100">
               <Brain className="text-sky-500 animate-bounce w-6 h-6" />
-              <span className="font-medium text-slate-700">
+              <span className="font-semibold text-slate-700 text-sm">
                 🧠 Structuring custom AI roadmap for "{concept}"...
               </span>
             </div>

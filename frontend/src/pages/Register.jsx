@@ -11,9 +11,10 @@ export default function Register() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const [fullName, setFullName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [leetcodeUsername, setLeetcodeUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -24,153 +25,54 @@ export default function Register() {
       setLoading(true);
       setError("");
 
-      // Register User
-      const regResponse = await axios.post(
+      const response = await axios.post(
         "http://localhost:8000/api/auth/register",
         {
-          full_name: fullName,
+          name,
           email,
           password,
+          leetcode_username: leetcodeUsername.trim() || undefined,
         }
       );
 
-      if (regResponse.data?.token && regResponse.data?.user) {
-        login(regResponse.data.user, regResponse.data.token);
-      } else {
-        // Fallback Auto Login
-        const loginResponse = await axios.post(
-          "http://localhost:8000/api/auth/login",
-          {
-            email,
-            password,
-          }
-        );
-        login(loginResponse.data.user, loginResponse.data.token);
-      }
-
-      navigate("/profile");
-
-    } catch (err) {
-
-      setError(
-        err.response?.data?.detail ||
-        "Registration failed"
+      login(
+        response.data.user,
+        response.data.token
       );
 
+      navigate("/dashboard");
+    } catch (err) {
+      setError(
+        err.response?.data?.detail ||
+          "Registration failed"
+      );
     } finally {
-
       setLoading(false);
-
     }
   };
 
-  const benefits = [
-    "✓ Personalized Roadmaps",
-    "✓ AI Coding Coach",
-    "✓ Progress Tracking",
-    "✓ Interview Preparation"
-  ];
-
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-sky-50/40 via-white to-slate-50">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-sky-50/40 via-white to-slate-50 flex flex-col justify-between">
 
-      <InteractiveBackground />
+      <div>
+        <InteractiveBackground />
+        <Navbar />
 
-      <Navbar />
-
-      {/* Static Ambient Orbs */}
-      <div className="absolute top-24 left-10 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-blue-200/25 rounded-full blur-3xl pointer-events-none" />
-
-      <div
-        className="
-          min-h-screen
-          grid
-          lg:grid-cols-2
-          pt-28
-          relative
-          z-10
-        "
-      >
-
-        {/* Left Side */}
+        {/* Static Ambient Orbs */}
+        <div className="absolute top-24 left-10 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-blue-200/25 rounded-full blur-3xl pointer-events-none" />
 
         <div
           className="
-            hidden
-            lg:flex
-            flex-col
-            justify-center
-            px-20
-          "
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-
-            <h1
-              className="
-                text-6xl
-                font-extrabold
-                leading-tight
-                text-slate-800
-              "
-            >
-              Start Your
-
-              <span className="text-sky-500 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
-                {" "}Coding Journey
-              </span>
-
-            </h1>
-
-            <p
-              className="
-                mt-8
-                text-xl
-                text-slate-600
-                max-w-lg
-                leading-relaxed
-              "
-            >
-              Build problem-solving
-              skills with AI-powered
-              coaching, roadmaps,
-              explanations and
-              progress tracking.
-            </p>
-
-            <div className="mt-10 space-y-4">
-              {benefits.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                  className="flex items-center gap-3 text-slate-700 font-semibold text-lg"
-                >
-                  <span className="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-sm font-bold shadow-2xs">
-                    ✓
-                  </span>
-                  {item.replace("✓ ", "")}
-                </motion.div>
-              ))}
-            </div>
-
-          </motion.div>
-        </div>
-
-        {/* Right Side */}
-
-        <div
-          className="
+            min-h-screen
             flex
             items-center
             justify-center
+            pt-36
+            pb-20
             px-6
-            py-12
+            relative
+            z-10
           "
         >
 
@@ -181,23 +83,25 @@ export default function Register() {
             className="
               w-full
               max-w-md
-              bg-white/80
-              backdrop-blur-xl
-              border
-              border-sky-100/80
+              liquid-glass
               rounded-3xl
               shadow-2xl
               p-8
+              md:p-10
               relative
+              border
+              border-sky-200/90
             "
           >
 
             <h2
               className="
-                text-4xl
+                text-3xl
+                md:text-4xl
                 font-extrabold
                 text-center
                 text-slate-800
+                tracking-tight
               "
             >
               Create Account
@@ -207,10 +111,12 @@ export default function Register() {
               className="
                 text-center
                 text-slate-500
-                mt-3
+                mt-2
+                text-sm
+                font-medium
               "
             >
-              Join LeetCode AI Coach
+              Start mastering LeetCode with AI Mentorship
             </p>
 
             {error && (
@@ -219,15 +125,15 @@ export default function Register() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="
                   mt-5
-                  bg-red-100
-                  text-red-600
+                  bg-rose-50
+                  text-rose-600
                   p-3.5
-                  rounded-xl
-                  text-sm
-                  font-medium
+                  rounded-2xl
+                  text-xs
+                  font-bold
                   text-center
                   border
-                  border-red-200
+                  border-rose-200
                 "
               >
                 {error}
@@ -242,68 +148,112 @@ export default function Register() {
               "
             >
 
-              <input
-                type="text"
-                placeholder="Full Name"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required
-                className="
-                  w-full
-                  p-4
-                  rounded-xl
-                  border
-                  border-slate-200
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-sky-400
-                  focus:border-sky-400
-                  transition-all
-                  text-slate-800
-                "
-              />
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  className="
+                    w-full
+                    p-3.5
+                    px-4
+                    rounded-2xl
+                    border
+                    border-sky-200
+                    bg-white/95
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-sky-400
+                    transition-all
+                    text-slate-800
+                    font-semibold
+                    text-sm
+                  "
+                />
+              </div>
 
-              <input
-                type="email"
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="
-                  w-full
-                  p-4
-                  rounded-xl
-                  border
-                  border-slate-200
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-sky-400
-                  focus:border-sky-400
-                  transition-all
-                  text-slate-800
-                "
-              />
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Email Address</label>
+                <input
+                  type="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="
+                    w-full
+                    p-3.5
+                    px-4
+                    rounded-2xl
+                    border
+                    border-sky-200
+                    bg-white/95
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-sky-400
+                    transition-all
+                    text-slate-800
+                    font-semibold
+                    text-sm
+                  "
+                />
+              </div>
 
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="
-                  w-full
-                  p-4
-                  rounded-xl
-                  border
-                  border-slate-200
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-sky-400
-                  focus:border-sky-400
-                  transition-all
-                  text-slate-800
-                "
-              />
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Password</label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="
+                    w-full
+                    p-3.5
+                    px-4
+                    rounded-2xl
+                    border
+                    border-sky-200
+                    bg-white/95
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-sky-400
+                    transition-all
+                    text-slate-800
+                    font-semibold
+                    text-sm
+                  "
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">LeetCode Username (Optional)</label>
+                <input
+                  type="text"
+                  placeholder="e.g. PurpleCrayon"
+                  value={leetcodeUsername}
+                  onChange={(e) => setLeetcodeUsername(e.target.value)}
+                  className="
+                    w-full
+                    p-3.5
+                    px-4
+                    rounded-2xl
+                    border
+                    border-sky-200
+                    bg-white/95
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-sky-400
+                    transition-all
+                    text-slate-800
+                    font-semibold
+                    text-sm
+                  "
+                />
+              </div>
 
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -312,23 +262,20 @@ export default function Register() {
                 disabled={loading}
                 className="
                   w-full
-                  py-4
-                  rounded-xl
+                  py-3.5
+                  rounded-2xl
                   text-white
-                  font-semibold
-                  bg-gradient-to-r
-                  from-sky-500
-                  to-blue-600
+                  font-extrabold
+                  text-sm
+                  liquid-button
                   shadow-lg
-                  hover:shadow-sky-500/25
                   transition-all
                   cursor-pointer
                   disabled:opacity-60
+                  mt-2
                 "
               >
-                {loading
-                  ? "Creating Account..."
-                  : "Create Account"}
+                {loading ? "Creating Account..." : "Create Account 🚀"}
               </motion.button>
 
             </form>
@@ -337,7 +284,9 @@ export default function Register() {
               className="
                 mt-6
                 text-center
-                text-slate-600
+                text-slate-500
+                text-xs
+                font-semibold
               "
             >
               Already have an account?
@@ -346,20 +295,18 @@ export default function Register() {
                 to="/login"
                 className="
                   text-sky-600
-                  ml-2
-                  font-bold
+                  ml-1.5
+                  font-extrabold
                   hover:underline
                 "
               >
-                Login
+                Login Here
               </Link>
-
             </p>
 
           </motion.div>
 
         </div>
-
       </div>
 
     </div>

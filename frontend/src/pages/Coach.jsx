@@ -43,9 +43,9 @@ const LOADING_STEPS = [
     icon: Sparkles,
     title: "✨ Almost there! Preparing step-by-step guide...",
     subtitle: "Finalizing intuitive breakdown and optimal solution code",
-    color: "text-indigo-500",
-    borderColor: "border-indigo-200",
-    bgColor: "bg-indigo-50/80"
+    color: "text-sky-600",
+    borderColor: "border-sky-200",
+    bgColor: "bg-sky-50/80"
   }
 ];
 
@@ -292,7 +292,7 @@ export default function Coach() {
               {/* Animated Top Progress Bar */}
               <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mb-8 shadow-inner">
                 <motion.div
-                  className="bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-600 h-full rounded-full"
+                  className="bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 h-full rounded-full"
                   initial={{ width: "0%" }}
                   animate={{ width: `${progressPercent}%` }}
                   transition={{ duration: 1.2, ease: "easeInOut" }}

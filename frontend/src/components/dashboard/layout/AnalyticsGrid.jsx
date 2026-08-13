@@ -1,20 +1,7 @@
 export default function AnalyticsGrid({ children }) {
-
-    return (
-
-        <div
-            className="
-                grid
-                xl:grid-cols-2
-                gap-8
-                mt-8
-            "
-        >
-
-            {children}
-
-        </div>
-
-    );
-
+  return (
+    <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+      {children}
+    </div>
+  );
 }

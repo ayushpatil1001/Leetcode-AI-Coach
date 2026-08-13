@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import InteractiveBackground from "../components/InteractiveBackground";
 
@@ -46,7 +47,6 @@ export default function Features() {
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-sky-50/40 via-white to-slate-50">
 
       <InteractiveBackground />
-
       <Navbar />
 
       {/* Static Ambient Orbs */}
@@ -68,10 +68,11 @@ export default function Features() {
               font-extrabold
               leading-tight
               text-slate-800
+              tracking-tight
             "
           >
             Explore What Makes
-            <span className="text-sky-500 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
+            <span className="text-sky-500 bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 bg-clip-text text-transparent">
               {" "}AI Coaching{" "}
             </span>
             Different
@@ -88,6 +89,7 @@ export default function Features() {
               mx-auto
               text-lg
               leading-relaxed
+              font-medium
             "
           >
             Learn how to solve coding problems,
@@ -114,18 +116,16 @@ export default function Features() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{
-                  y: -10,
-                  scale: 1.02,
+                  y: -6,
+                  scale: 1.01,
                 }}
                 className="
-                  bg-white/80
-                  backdrop-blur-xl
+                  liquid-glass
                   rounded-3xl
                   shadow-xl
-                  hover:shadow-2xl
                   p-8
                   border
-                  border-sky-100/60
+                  border-sky-100
                   transition-all
                   duration-300
                 "
@@ -138,11 +138,11 @@ export default function Features() {
                   {feature.icon}
                 </motion.div>
 
-                <h3 className="text-2xl font-bold text-slate-800">
+                <h3 className="text-2xl font-extrabold text-slate-800 tracking-tight">
                   {feature.title}
                 </h3>
 
-                <p className="mt-4 text-slate-500 leading-relaxed">
+                <p className="mt-4 text-slate-500 leading-relaxed font-medium">
                   {feature.description}
                 </p>
 
@@ -172,12 +172,13 @@ export default function Features() {
               font-extrabold
               text-center
               text-slate-800
+              tracking-tight
             "
           >
             Example AI Coaching
           </motion.h2>
 
-          <p className="text-center text-slate-500 mt-4 text-lg">
+          <p className="text-center text-slate-500 mt-4 text-lg font-medium">
             See how the coach guides you through real problem breakdown.
           </p>
 
@@ -192,58 +193,56 @@ export default function Features() {
               transition={{ duration: 0.5 }}
               whileHover={{ y: -6 }}
               className="
-                bg-white/80
-                backdrop-blur-xl
+                liquid-glass
                 rounded-3xl
                 shadow-xl
-                hover:shadow-2xl
                 p-8
                 border
-                border-sky-100/60
+                border-sky-100
                 transition-all
               "
             >
 
-              <h3 className="text-3xl font-bold text-slate-800">
+              <h3 className="text-3xl font-extrabold text-slate-800 tracking-tight">
                 Two Sum
               </h3>
 
-              <p className="mt-3 text-slate-500">
+              <p className="mt-3 text-slate-500 font-medium">
                 Given an array and target value,
                 find two numbers that add up to target.
               </p>
 
               <div className="mt-6 space-y-4">
 
-                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
-                  <h4 className="font-semibold text-sky-900">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/90 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-bold text-sky-900 text-sm">
                     Hint #1
                   </h4>
 
-                  <p className="text-slate-600 mt-2">
+                  <p className="text-slate-600 mt-1.5 text-sm font-medium">
                     Can you remember previously
                     visited values?
                   </p>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
-                  <h4 className="font-semibold text-sky-900">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/90 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-bold text-sky-900 text-sm">
                     Hint #2
                   </h4>
 
-                  <p className="text-slate-600 mt-2">
+                  <p className="text-slate-600 mt-1.5 text-sm font-medium">
                     What if you store numbers
                     inside a HashMap?
                   </p>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
-                  <h4 className="font-semibold text-sky-900">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/90 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-bold text-sky-900 text-sm">
                     Complexity
                   </h4>
 
-                  <p className="text-sky-700 font-mono font-bold mt-2">
-                    Time: O(n)
+                  <p className="text-sky-700 font-mono font-extrabold mt-1.5 text-sm">
+                    Time: O(n) | Space: O(n)
                   </p>
                 </motion.div>
 
@@ -260,57 +259,55 @@ export default function Features() {
               transition={{ duration: 0.5 }}
               whileHover={{ y: -6 }}
               className="
-                bg-white/80
-                backdrop-blur-xl
+                liquid-glass
                 rounded-3xl
                 shadow-xl
-                hover:shadow-2xl
                 p-8
                 border
-                border-sky-100/60
+                border-sky-100
                 transition-all
               "
             >
 
-              <h3 className="text-3xl font-bold text-slate-800">
+              <h3 className="text-3xl font-extrabold text-slate-800 tracking-tight">
                 Valid Parentheses
               </h3>
 
-              <p className="mt-3 text-slate-500">
+              <p className="mt-3 text-slate-500 font-medium">
                 Determine whether the input string
                 has valid matching brackets.
               </p>
 
               <div className="mt-6 space-y-4">
 
-                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
-                  <h4 className="font-semibold text-sky-900">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/90 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-bold text-sky-900 text-sm">
                     Hint #1
                   </h4>
 
-                  <p className="text-slate-600 mt-2">
+                  <p className="text-slate-600 mt-1.5 text-sm font-medium">
                     Think about the most recent
                     opening bracket.
                   </p>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
-                  <h4 className="font-semibold text-sky-900">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/90 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-bold text-sky-900 text-sm">
                     Data Structure
                   </h4>
 
-                  <p className="text-slate-600 mt-2">
+                  <p className="text-slate-600 mt-1.5 text-sm font-medium">
                     Stack
                   </p>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
-                  <h4 className="font-semibold text-sky-900">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/90 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-bold text-sky-900 text-sm">
                     Complexity
                   </h4>
 
-                  <p className="text-sky-700 font-mono font-bold mt-2">
-                    Time: O(n)
+                  <p className="text-sky-700 font-mono font-extrabold mt-1.5 text-sm">
+                    Time: O(n) | Space: O(n)
                   </p>
                 </motion.div>
 
@@ -337,8 +334,9 @@ export default function Features() {
             max-w-5xl
             mx-auto
             bg-gradient-to-r
-            from-sky-500
-            to-blue-600
+            from-sky-400
+            via-sky-500
+            to-sky-600
             rounded-[40px]
             p-12
             text-center
@@ -352,34 +350,41 @@ export default function Features() {
               text-4xl
               md:text-5xl
               font-extrabold
+              tracking-tight
             "
           >
             Ready to Level Up?
           </h2>
 
-          <p className="mt-5 text-lg text-white/90">
+          <p className="mt-5 text-lg text-white/90 font-medium">
             Stop memorizing solutions.
             Start mastering problem solving.
           </p>
 
-          <motion.button
+          <motion.div
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.95 }}
-            className="
-              mt-8
-              bg-white
-              text-sky-600
-              px-8
-              py-4
-              rounded-2xl
-              font-semibold
-              shadow-lg
-              transition
-              cursor-pointer
-            "
+            className="mt-8 inline-block"
           >
-            Try AI Coach
-          </motion.button>
+            <Link
+              to="/coach"
+              className="
+                inline-block
+                bg-white
+                text-sky-600
+                px-8
+                py-4
+                rounded-2xl
+                font-extrabold
+                shadow-lg
+                hover:bg-sky-50
+                transition
+                cursor-pointer
+              "
+            >
+              Try AI Coach ⚡
+            </Link>
+          </motion.div>
 
         </motion.div>
 
