@@ -1,0 +1,37 @@
+TOPIC_QUERY = """
+query topicStats($username:String!){
+
+matchedUser(username:$username){
+
+tagProblemCounts{
+
+advanced{
+
+tagName
+
+problemsSolved
+
+}
+
+intermediate{
+
+tagName
+
+problemsSolved
+
+}
+
+fundamental{
+
+tagName
+
+problemsSolved
+
+}
+
+}
+
+}
+
+}
+"""

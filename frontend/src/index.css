@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
 
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-sans);
 }
+
 section {
   position: relative;
 }
@@ -12,35 +20,183 @@ body {
   overflow-x: hidden;
 
   background:
+    radial-gradient(ellipse at 20% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
     linear-gradient(
       rgba(255,255,255,0.7),
       rgba(255,255,255,0.7)
     ),
-
     linear-gradient(
       to right,
-      rgba(14,165,233,0.05) 1px,
+      rgba(14,165,233,0.04) 1px,
       transparent 1px
     ),
-
     linear-gradient(
       to bottom,
-      rgba(14,165,233,0.05) 1px,
+      rgba(14,165,233,0.04) 1px,
       transparent 1px
     );
 
   background-size:
+    100% 100%,
+    100% 100%,
     cover,
-    60px 60px,
-    60px 60px;
+    50px 50px,
+    50px 50px;
 
-  background-color: #f8fbff;
+  background-color: #f6fafe;
+  color: #0f172a;
 }
 
-nav {
-  transition: all 0.3s ease;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-nav:hover {
-  transform: translateX(-50%) translateY(-2px);
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.65);
+}
+
+/* ==========================================================================
+   Liquid Glass Theme Utilities
+   ========================================================================== */
+
+/* Base Liquid Glass Container */
+.liquid-glass {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.65) 100%
+  );
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 20px 40px -15px rgba(14, 165, 233, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(14, 165, 233, 0.05);
+}
+
+/* Liquid Specular Top Gloss Highlight Overlay */
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Interactive Hover State for Liquid Glass */
+.liquid-glass-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-hover:hover {
+  transform: translateY(-5px) scale(1.005);
+  box-shadow:
+    0 30px 60px -15px rgba(14, 165, 233, 0.22),
+    0 0 25px rgba(56, 189, 248, 0.18),
+    inset 0 1px 3px rgba(255, 255, 255, 1);
+  border-color: rgba(56, 189, 248, 0.7);
+}
+
+/* Shimmer Liquid Pill Button */
+.liquid-button {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #0ea5e9 0%,
+    #2563eb 50%,
+    #3b82f6 100%
+  );
+  box-shadow:
+    0 10px 25px -5px rgba(14, 165, 233, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.liquid-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 18px 35px -5px rgba(14, 165, 233, 0.55),
+    0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.liquid-button:hover::after {
+  opacity: 1;
+}
+
+/* Liquid Tag Badge */
+.liquid-badge {
+  background: linear-gradient(
+    135deg,
+    rgba(224, 242, 254, 0.9) 0%,
+    rgba(240, 249, 255, 0.7) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(186, 230, 253, 0.8);
+  color: #0369a1;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.08);
+}
+
+.font-mono-code {
+  font-family: var(--font-mono);
+}
+
+.color-empty{
+  fill:#ebedf0;
+}
+
+.color-github-1{
+  fill:#9be9a8;
+}
+
+.color-github-2{
+  fill:#40c463;
+}
+
+.color-github-3{
+  fill:#30a14e;
+}
+
+.color-github-4{
+  fill:#216e39;
 }

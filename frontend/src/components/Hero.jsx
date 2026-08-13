@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import FloatingArt from "./FloatingArt";
 
 
@@ -53,15 +54,7 @@ export default function Hero() {
 
   
 
-        <motion.div
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 40, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: 10,
-          }}
+        <div
           className="
             absolute
             bottom-10
@@ -173,36 +166,38 @@ export default function Hero() {
             "
           > 
 
-            <button
-                className="
-                bg-gradient-to-r
-                from-sky-500
-                to-blue-500
+            <Link
+              to="/coach"
+              className="
+                liquid-button
                 text-white
+                font-bold
                 px-8
                 py-4
                 rounded-2xl
-                shadow-xl
-                hover:scale-105
-                transition
-                "
+                text-center
+                inline-block
+              "
             >
-                Try AI Coach
-            </button>
+              Try AI Coach 🚀
+            </Link>
 
-            <button
-                className="
-                bg-white
-                border
-                border-sky-200
+            <Link
+              to="/features"
+              className="
+                liquid-glass
+                liquid-glass-hover
+                text-sky-700
+                font-bold
                 px-8
                 py-4
                 rounded-2xl
-                shadow-md
-                "
+                text-center
+                inline-block
+              "
             >
-                Learn More
-            </button>
+              Explore Features ✨
+            </Link>
 
             </div>
           </motion.div>

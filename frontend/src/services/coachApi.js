@@ -1,27 +1,32 @@
 import axios from "axios";
 
 const API =
-  "http://localhost:8000/api";
+  "http://localhost:8000/api/analyze-problem";
 
 export const analyzeProblem =
-  async (input) => {
+  async (problem) => {
 
     const response =
       await axios.post(
-        `${API}/analyze-problem`,
-        { input }
+        API,
+        {
+          problem
+        }
       );
 
     return response.data;
-};
+  };
 
 export const explainProblem =
-  async (input) => {
+  async (problem, language = "python") => {
 
     const response =
       await axios.post(
         `${API}/explain`,
-        { input }
+        {
+          input: problem,
+          language: language
+        }
       );
 
     return response.data;

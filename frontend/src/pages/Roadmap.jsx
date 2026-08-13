@@ -1,177 +1,168 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import RoadmapBlock from "../components/RoadmapBlock";
+import InteractiveBackground from "../components/InteractiveBackground";
 import { generateRoadmap } from "../services/roadmapApi";
+import { Sparkles, Brain, Compass } from "lucide-react";
 
 export default function Roadmap() {
 
-  const [concept, setConcept] =
-    useState("");
+  const [concept, setConcept] = useState("");
+  const [roadmap, setRoadmap] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const [roadmap, setRoadmap] =
-    useState(null);
+  const handleGenerate = async () => {
+    if (!concept.trim()) return;
 
-  const [loading, setLoading] =
-    useState(false);
+    try {
+      setLoading(true);
 
-  const handleGenerate =
-    async () => {
+      const result = await generateRoadmap(concept);
 
-      try {
+      const clean = result.response
+        .replace("```json", "")
+        .replace("```", "");
 
-        setLoading(true);
+      setRoadmap(JSON.parse(clean));
 
-        const result =
-          await generateRoadmap(
-            concept
-          );
-
-        const clean =
-          result.response
-            .replace(
-              "```json",
-              ""
-            )
-            .replace(
-              "```",
-              ""
-            );
-
-        setRoadmap(
-          JSON.parse(clean)
-        );
-
-      } catch (err) {
-
-        console.log(err);
-
-      } finally {
-
-        setLoading(false);
-
-      }
-    };
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div
-      className="
-        min-h-screen
-        pb-24
-      "
-    >
+    <div className="min-h-screen pb-24 bg-gradient-to-b from-sky-50/40 via-white to-slate-50 relative overflow-hidden">
+
+      <InteractiveBackground />
 
       <Navbar />
 
-      <div
-        className="
-          max-w-6xl
-          mx-auto
-          px-6
-          pt-40
-        "
-      >
+      {/* Static Ambient Orbs */}
+      <div className="absolute top-28 left-10 w-80 h-80 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-52 right-10 w-96 h-96 bg-blue-200/25 rounded-full blur-3xl pointer-events-none" />
 
-        <h1
-          className="
-            text-6xl
-            font-extrabold
-            text-center
-          "
+      <div className="max-w-6xl mx-auto px-6 pt-40 relative z-10">
+
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          AI Roadmaps
-        </h1>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 bg-sky-100/80 text-sky-600 px-4 py-2 rounded-full mb-6 font-medium text-sm border border-sky-200/50 cursor-default shadow-xs"
+          >
+            <Compass size={18} />
+            AI Powered Learning Paths
+          </motion.div>
 
-        <p
-          className="
-            text-center
-            text-gray-500
-            mt-4
-          "
-        >
-          Learn any concept from
-          beginner to expert.
-        </p>
+          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-800 tracking-tight">
+            🧠 AI <span className="text-sky-500 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">Roadmaps</span>
+          </h1>
 
-        <div
-          className="
-            mt-12
-            flex
-            gap-4
-          "
+          <p className="text-center text-slate-500 mt-4 text-xl max-w-2xl mx-auto leading-relaxed">
+            Master any data structure or algorithm concept step-by-step from beginner to expert.
+          </p>
+        </motion.div>
+
+        {/* Input & Action Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.2 }}
+          className="mt-12 max-w-3xl mx-auto flex flex-col sm:flex-row gap-4"
         >
 
           <input
             value={concept}
-            onChange={(e) =>
-              setConcept(
-                e.target.value
-              )
-            }
-            placeholder="
-              Dynamic Programming
-            "
+            onChange={(e) => setConcept(e.target.value)}
+            placeholder="e.g. Dynamic Programming, Graph Theory, Binary Search..."
             className="
               flex-1
-              p-4
+              h-14
+              px-6
               rounded-2xl
               border
+              border-sky-200
+              bg-white/90
+              backdrop-blur-xl
+              shadow-lg
+              hover:shadow-xl
+              focus:ring-2
+              focus:ring-sky-400
+              outline-none
+              transition-all
+              text-slate-800
             "
           />
 
-          <button
-            onClick={
-              handleGenerate
-            }
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={handleGenerate}
+            disabled={loading}
             className="
+              h-14
               px-8
               rounded-2xl
               text-white
+              font-semibold
               bg-gradient-to-r
               from-sky-500
               to-blue-600
+              shadow-lg
+              hover:shadow-sky-500/25
+              transition-all
+              cursor-pointer
+              disabled:opacity-60
+              whitespace-nowrap
             "
           >
-            Generate
-          </button>
+            {loading ? "Generating..." : "Generate Roadmap"}
+          </motion.button>
 
-        </div>
+        </motion.div>
 
+        {/* Animated Loading Indicator */}
         {loading && (
-
-          <div
-            className="
-              mt-10
-              text-center
-            "
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="mt-12 text-center"
           >
-            Generating roadmap...
-          </div>
-
+            <div className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-xl rounded-2xl px-8 py-5 shadow-xl border border-sky-100">
+              <Brain className="text-sky-500 animate-bounce w-6 h-6" />
+              <span className="font-medium text-slate-700">
+                🧠 Structuring custom AI roadmap for "{concept}"...
+              </span>
+            </div>
+          </motion.div>
         )}
 
-        {roadmap && (
-
-          <div
-            className="
-              mt-12
-              space-y-6
-            "
+        {/* Roadmap Levels Display */}
+        {roadmap && !loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mt-12 space-y-6 max-w-4xl mx-auto"
           >
-
-            {roadmap.levels.map(
-              (
-                level,
-                index
-              ) => (
-                <RoadmapBlock
-                  key={index}
-                  level={level}
-                />
-              )
-            )}
-
-          </div>
-
+            {roadmap.levels.map((level, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: index * 0.1 }}
+              >
+                <RoadmapBlock level={level} />
+              </motion.div>
+            ))}
+          </motion.div>
         )}
 
       </div>

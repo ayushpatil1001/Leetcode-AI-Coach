@@ -1,150 +1,205 @@
 import Reveal from "./Reveal";
 import { TypeAnimation } from "react-type-animation";
+import { motion } from "framer-motion";
+import { Code2, Brain, Zap, Clock, Sparkles } from "lucide-react";
 
 export default function HowItWorks() {
   return (
-    <section className="py-40 px-6">
+    <section className="py-32 px-6 relative z-10">
 
       <div className="max-w-6xl mx-auto">
 
         <Reveal>
-          <h2 className="text-6xl font-bold text-center">
-            How Our AI Coach Works
-          </h2>
+          <div className="text-center">
+            <span className="text-xs font-bold uppercase tracking-wider text-sky-600 bg-sky-100/80 px-4 py-1.5 rounded-full border border-sky-200/50">
+              Workflow Breakdown
+            </span>
+            <h2 className="text-4xl md:text-6xl font-extrabold text-slate-800 tracking-tight mt-4">
+              How Our <span className="text-sky-500 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">AI Coach</span> Works
+            </h2>
 
-          <p className="text-center text-gray-500 mt-5">
-            Learn DSA without copying solutions.
-          </p>
+            <p className="text-center text-slate-500 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
+              Experience a streamlined 4-step process from problem statement to optimal algorithm intuition.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="mt-24 space-y-32">
+        <div className="mt-20 space-y-24">
 
+          {/* STEP 1: Input & Language Selection */}
           <Reveal>
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
 
-              <div className="
-                bg-white
-                p-8
-                rounded-3xl
-                shadow-xl
-              ">
-                <input
-                  className="
-                    w-full
-                    p-4
-                    rounded-xl
-                    border
-                  "
-                  value="leetcode.com/problems/two-sum"
-                  readOnly
-                />
-              </div>
-
-              <div>
-                <h3 className="text-4xl font-bold">
-                  Paste Any Problem
-                </h3>
-
-                <p className="mt-4 text-gray-500">
-                  Paste a LeetCode URL or full statement.
-                </p>
-              </div>
-
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-
-              <div>
-                <h3 className="text-4xl font-bold">
-                  AI Generates Hints
-                </h3>
-
-                <p className="mt-4 text-gray-500">
-                  Get progressive hints instead of answers.
-                </p>
-              </div>
-
-              <div className="
-                bg-white
-                p-8
-                rounded-3xl
-                shadow-xl
-              ">
-                <h4 className="font-bold">
-                  Hint #1
-                </h4>
-
-                <p className="mt-3 text-gray-500">
-                  Think about storing previously seen values.
-                </p>
-              </div>
-
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-
-              <div className="
-                bg-white
-                p-5
-                rounded-3xl
-                shadow-xl
-              ">
-                <div
+              <motion.div
+                whileHover={{ scale: 1.02 }}
                 className="
-                  h-94
-                  rounded-2xl
-                  bg-slate-900
-                  p-9
-                  shadow-2xl
-                  overflow-hidden
-                  font-mono
-                  text-sm
+                  bg-white/90
+                  backdrop-blur-xl
+                  p-8
+                  rounded-3xl
+                  shadow-xl
+                  border
+                  border-sky-100/80
+                  space-y-4
                 "
               >
-                {/* Editor Header */}
-                <div className="flex gap-2 mb-4">
-                  <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200/60">
+                  <input
+                    className="
+                      w-full
+                      bg-transparent
+                      text-slate-800
+                      font-mono
+                      text-sm
+                      outline-none
+                    "
+                    value="leetcode.com/problems/two-sum"
+                    readOnly
+                  />
                 </div>
 
-                <TypeAnimation
-                  sequence={[
-                `function twoSum(nums, target) {
-                  const map = new Map();
-
-                  for(let i = 0; i < nums.length; i++) {
-
-                    const complement =
-                      target - nums[i];
-
-                    if(map.has(complement)) {
-                      return [
-                        map.get(complement),
-                        i];
-                    }
-                    map.set(nums[i], i);
-                  }}`,
-                  ]}
-                  speed={80}
-                  cursor={true}
-                  repeat={Infinity}
-                  className="text-slate-200 whitespace-pre-line"
-                />
-              </div>
-              </div>
+                <div className="flex items-center justify-between bg-sky-50/80 p-3.5 rounded-2xl border border-sky-100">
+                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
+                    <Code2 className="w-4 h-4 text-sky-500" />
+                    Target Language:
+                  </div>
+                  <span className="text-xs font-bold text-sky-600 bg-white px-3 py-1 rounded-xl shadow-2xs border border-sky-200">
+                    Python 3 / C++ / Java / JS
+                  </span>
+                </div>
+              </motion.div>
 
               <div>
-                <h3 className="text-4xl font-bold">
-                  Solve Yourself
+                <div className="w-10 h-10 rounded-2xl bg-sky-500 text-white font-bold flex items-center justify-center mb-4 shadow-md text-base">
+                  1
+                </div>
+                <h3 className="text-3xl font-extrabold text-slate-800">
+                  Paste Problem & Choose Language
                 </h3>
 
-                <p className="mt-4 text-gray-500">
-                  Build problem-solving skills.
+                <p className="mt-4 text-slate-500 leading-relaxed text-base">
+                  Simply paste any LeetCode problem link or raw statement, and pick your preferred coding language (Python, C++, Java, JS, TS, Rust, Go, or SQL).
+                </p>
+              </div>
+
+            </div>
+          </Reveal>
+
+          {/* STEP 2: Multi-Stage Animated Processing */}
+          <Reveal>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+
+              <div className="order-2 md:order-1">
+                <div className="w-10 h-10 rounded-2xl bg-amber-500 text-white font-bold flex items-center justify-center mb-4 shadow-md text-base">
+                  2
+                </div>
+                <h3 className="text-3xl font-extrabold text-slate-800">
+                  4-Stage Animated Deep Analysis
+                </h3>
+
+                <p className="mt-4 text-slate-500 leading-relaxed text-base">
+                  Watch the AI coach dynamically cycle through understanding constraint parameters, evaluating data structures, computing Big-O complexities, and structuring optimal steps.
+                </p>
+              </div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="
+                  order-1
+                  md:order-2
+                  bg-white/90
+                  backdrop-blur-xl
+                  p-6
+                  rounded-3xl
+                  shadow-xl
+                  border
+                  border-amber-100
+                  space-y-3
+                "
+              >
+                <div className="flex items-center gap-3 p-3 bg-sky-50 rounded-2xl border border-sky-100">
+                  <Brain className="w-5 h-5 text-sky-500" />
+                  <span className="text-xs font-bold text-slate-700">1. Parsing constraints & objectives</span>
+                </div>
+                <div className="flex items-center gap-3 p-3 bg-amber-50 rounded-2xl border border-amber-100">
+                  <Zap className="w-5 h-5 text-amber-500 animate-pulse" />
+                  <span className="text-xs font-bold text-slate-700">2. Formulating optimal logic</span>
+                </div>
+                <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-2xl border border-emerald-100">
+                  <Clock className="w-5 h-5 text-emerald-500" />
+                  <span className="text-xs font-bold text-slate-700">3. Computing Time & Space complexity</span>
+                </div>
+                <div className="flex items-center gap-3 p-3 bg-indigo-50 rounded-2xl border border-indigo-100">
+                  <Sparkles className="w-5 h-5 text-indigo-500" />
+                  <span className="text-xs font-bold text-slate-700">4. Finalizing step-by-step solution</span>
+                </div>
+              </motion.div>
+
+            </div>
+          </Reveal>
+
+          {/* STEP 3: Intuition, Step-by-Step & Code Output */}
+          <Reveal>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="
+                  bg-white/90
+                  backdrop-blur-xl
+                  p-5
+                  rounded-3xl
+                  shadow-xl
+                  border
+                  border-sky-100
+                "
+              >
+                <div
+                  className="
+                    h-80
+                    rounded-2xl
+                    bg-slate-900
+                    p-6
+                    shadow-2xl
+                    overflow-hidden
+                    font-mono
+                    text-xs
+                  "
+                >
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4 text-slate-400">
+                    <span className="text-sky-400 font-bold">Optimal Solution Code</span>
+                    <span className="text-emerald-400 font-bold">O(N) Time</span>
+                  </div>
+
+                  <TypeAnimation
+                    sequence={[
+                  `def twoSum(nums: list[int], target: int) -> list[int]:
+    seen = {}
+    for i, num in enumerate(nums):
+        diff = target - num
+        if diff in seen:
+            return [seen[diff], i]
+        seen[num] = i
+    return []`,
+                    ]}
+                    speed={80}
+                    cursor={true}
+                    repeat={1}
+                    className="text-emerald-400 whitespace-pre-line leading-relaxed"
+                  />
+                </div>
+              </motion.div>
+
+              <div>
+                <div className="w-10 h-10 rounded-2xl bg-emerald-500 text-white font-bold flex items-center justify-center mb-4 shadow-md text-base">
+                  3
+                </div>
+                <h3 className="text-3xl font-extrabold text-slate-800">
+                  Direct Intuition & Target Language Code
+                </h3>
+
+                <p className="mt-4 text-slate-500 leading-relaxed text-base">
+                  Get clean core intuition, a clear numbered step-by-step breakdown, highlighted time and space complexity metrics, and copyable solution code generated directly in your selected programming language.
                 </p>
               </div>
 

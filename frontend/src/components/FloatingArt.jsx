@@ -37,7 +37,7 @@ export default function ProblemSolvingArt() {
         animate={{ y: [0, -15, 0] }}
         transition={{
           duration: 5,
-          repeat: 10,
+          repeat: 2,
         }}
         className="
           absolute
@@ -73,7 +73,7 @@ export default function ProblemSolvingArt() {
         }}
         transition={{
           duration: 4,
-          repeat: 10,
+          repeat: 2,
         }}
         className="
           absolute
@@ -97,7 +97,7 @@ export default function ProblemSolvingArt() {
         animate={{ y: [0, -10, 0] }}
         transition={{
           duration: 6,
-          repeat: 10,
+          repeat: 2,
         }}
         className="
           absolute
@@ -138,7 +138,7 @@ export default function ProblemSolvingArt() {
         }}
         transition={{
           duration: 5,
-          repeat: 10,
+          repeat: 2,
         }}
         className="
           absolute
@@ -164,7 +164,7 @@ export default function ProblemSolvingArt() {
         }}
         transition={{
           duration: 4,
-          repeat: 10,
+          repeat: 2,
         }}
         className="
           absolute

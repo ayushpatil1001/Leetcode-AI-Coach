@@ -28,7 +28,7 @@ export default function FloatingCodes() {
           }}
           transition={{
             duration: 12 + Math.random() * 10,
-            repeat: 10,
+            repeat: 2,
             delay: index,
           }}
           className="absolute text-sky-200 font-bold text-2xl"

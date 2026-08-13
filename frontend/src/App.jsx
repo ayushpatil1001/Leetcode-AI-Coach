@@ -1,13 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 import Home from "./pages/Home";
 import Features from "./pages/Features";
 import Roadmap from "./pages/Roadmap";
 import Coach from "./pages/Coach";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
 
       {/* Background Glow Top Left */}
       <div
@@ -42,6 +48,7 @@ function App() {
       />
 
       <div className="relative z-10">
+
         <Routes>
 
           <Route
@@ -56,18 +63,54 @@ function App() {
 
           <Route
             path="/roadmap"
-            element={<Roadmap />}
+            element={
+              <ProtectedRoute>
+                <Roadmap />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/coach"
-            element={<Coach />}
+            element={
+              <ProtectedRoute>
+                <Coach />
+              </ProtectedRoute>
+            }
           />
 
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+
+          <Route
+            path="/register"
+            element={<Register />}
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard"
+            element={
+                <ProtectedRoute>
+                    <Dashboard/>
+                </ProtectedRoute>
+            }
+        />
         </Routes>
+
       </div>
 
-    </BrowserRouter>
+    </>
   );
 }
 

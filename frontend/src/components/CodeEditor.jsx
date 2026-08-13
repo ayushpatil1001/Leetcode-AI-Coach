@@ -3,26 +3,18 @@ import Editor from "@monaco-editor/react";
 export default function CodeEditor({
   code,
   setCode,
-  language
-}){
-
+}) {
   return (
-    <div
-      className="
-        overflow-hidden
-        rounded-3xl
-        shadow-xl
-      "
-    >
-       <Editor
+    <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-xl">
+      <Editor
         height="500px"
-        language={language}
+        defaultLanguage="javascript"
         theme="vs-dark"
         value={code}
         onChange={(value) =>
-            setCode(value)
+          setCode(value || "")
         }
-    />
+      />
     </div>
   );
 }

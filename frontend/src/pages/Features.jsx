@@ -1,84 +1,93 @@
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
+import InteractiveBackground from "../components/InteractiveBackground";
 
 const features = [
   {
-    title: "AI Hints",
+    title: "Target Language Selection",
     description:
-      "Get progressive hints without instantly revealing the solution.",
-    icon: "💡",
+      "Select your preferred language (Python 3, C++, Java, JS, TS, C#, Go, Rust, SQL) before generating answers.",
+    icon: "💻",
   },
   {
-    title: "Step-by-Step Thinking",
+    title: "Direct Logic Explanation",
     description:
-      "Learn how experienced engineers approach coding problems.",
+      "Gain core algorithmic intuition with plain-English breakdowns of core engineering concepts.",
     icon: "🧠",
   },
   {
-    title: "Complexity Analysis",
+    title: "Step-by-Step Guide",
     description:
-      "Understand time and space complexity with clear explanations.",
+      "Follow numbered, structured algorithmic steps designed to build real problem-solving confidence.",
     icon: "⚡",
   },
   {
-    title: "Progress Tracking",
+    title: "Highlighted Time Complexity",
     description:
-      "Track solved problems and monitor your growth over time.",
-    icon: "📈",
+      "Get exact Big-O Time Complexity & Space Complexity metrics highlighted for peak performance.",
+    icon: "📊",
   },
   {
-    title: "Problem Breakdown",
+    title: "4-Stage Animated Analysis",
     description:
-      "AI summarizes the problem and highlights key patterns.",
-    icon: "📚",
+      "Enjoy multi-stage loading screen animations describing real-time AI reasoning progress.",
+    icon: "✨",
   },
   {
-    title: "Learning Focused",
+    title: "1-Click Copyable Code",
     description:
-      "Designed to teach problem-solving, not encourage copying.",
-    icon: "🎯",
+      "Instantly copy clean, formatted, optimal solution code directly to your clipboard.",
+    icon: "📋",
   },
 ];
 
 export default function Features() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-sky-50/40 via-white to-slate-50">
+
+      <InteractiveBackground />
 
       <Navbar />
 
+      {/* Static Ambient Orbs */}
+      <div className="absolute top-32 left-10 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-64 right-10 w-[450px] h-[450px] bg-blue-200/25 rounded-full blur-3xl pointer-events-none" />
+
       {/* HERO */}
-      <section className="pt-40 pb-24 px-6">
+      <section className="pt-40 pb-20 px-6 relative z-10">
 
         <div className="max-w-7xl mx-auto text-center">
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
             className="
               text-4xl
               md:text-6xl
               font-extrabold
               leading-tight
+              text-slate-800
             "
           >
             Explore What Makes
-            <span className="text-sky-500">
+            <span className="text-sky-500 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
               {" "}AI Coaching{" "}
             </span>
             Different
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="
-              text-gray-600
+              text-slate-600
               mt-6
               max-w-3xl
               mx-auto
               text-lg
+              leading-relaxed
             "
           >
             Learn how to solve coding problems,
@@ -92,7 +101,7 @@ export default function Features() {
 
       {/* FEATURES GRID */}
 
-      <section className="px-6">
+      <section className="px-6 relative z-10">
 
         <div className="max-w-7xl mx-auto">
 
@@ -101,8 +110,11 @@ export default function Features() {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{
-                  y: -8,
+                  y: -10,
                   scale: 1.02,
                 }}
                 className="
@@ -110,20 +122,27 @@ export default function Features() {
                   backdrop-blur-xl
                   rounded-3xl
                   shadow-xl
+                  hover:shadow-2xl
                   p-8
                   border
-                  border-white/50
+                  border-sky-100/60
+                  transition-all
+                  duration-300
                 "
               >
-                <div className="text-5xl mb-5">
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="text-5xl mb-5 inline-block"
+                >
                   {feature.icon}
-                </div>
+                </motion.div>
 
-                <h3 className="text-2xl font-bold">
+                <h3 className="text-2xl font-bold text-slate-800">
                   {feature.title}
                 </h3>
 
-                <p className="mt-4 text-gray-500">
+                <p className="mt-4 text-slate-500 leading-relaxed">
                   {feature.description}
                 </p>
 
@@ -138,23 +157,28 @@ export default function Features() {
 
       {/* LEETCODE EXAMPLES */}
 
-      <section className="py-32 px-6">
+      <section className="py-32 px-6 relative z-10">
 
         <div className="max-w-7xl mx-auto">
 
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
             className="
               text-4xl
               md:text-5xl
-              font-bold
+              font-extrabold
               text-center
+              text-slate-800
             "
           >
             Example AI Coaching
-          </h2>
+          </motion.h2>
 
-          <p className="text-center text-gray-500 mt-4">
-            See how the coach guides you.
+          <p className="text-center text-slate-500 mt-4 text-lg">
+            See how the coach guides you through real problem breakdown.
           </p>
 
           <div className="grid lg:grid-cols-2 gap-10 mt-16">
@@ -162,58 +186,66 @@ export default function Features() {
             {/* TWO SUM */}
 
             <motion.div
-              whileHover={{ y: -5 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ y: -6 }}
               className="
                 bg-white/80
                 backdrop-blur-xl
                 rounded-3xl
                 shadow-xl
+                hover:shadow-2xl
                 p-8
+                border
+                border-sky-100/60
+                transition-all
               "
             >
 
-              <h3 className="text-3xl font-bold">
+              <h3 className="text-3xl font-bold text-slate-800">
                 Two Sum
               </h3>
 
-              <p className="mt-3 text-gray-500">
+              <p className="mt-3 text-slate-500">
                 Given an array and target value,
                 find two numbers that add up to target.
               </p>
 
               <div className="mt-6 space-y-4">
 
-                <div className="bg-sky-50 p-5 rounded-2xl">
-                  <h4 className="font-semibold">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-semibold text-sky-900">
                     Hint #1
                   </h4>
 
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-slate-600 mt-2">
                     Can you remember previously
                     visited values?
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="bg-sky-50 p-5 rounded-2xl">
-                  <h4 className="font-semibold">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-semibold text-sky-900">
                     Hint #2
                   </h4>
 
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-slate-600 mt-2">
                     What if you store numbers
                     inside a HashMap?
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="bg-sky-50 p-5 rounded-2xl">
-                  <h4 className="font-semibold">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-semibold text-sky-900">
                     Complexity
                   </h4>
 
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-sky-700 font-mono font-bold mt-2">
                     Time: O(n)
                   </p>
-                </div>
+                </motion.div>
 
               </div>
 
@@ -222,57 +254,65 @@ export default function Features() {
             {/* VALID PARENTHESES */}
 
             <motion.div
-              whileHover={{ y: -5 }}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ y: -6 }}
               className="
                 bg-white/80
                 backdrop-blur-xl
                 rounded-3xl
                 shadow-xl
+                hover:shadow-2xl
                 p-8
+                border
+                border-sky-100/60
+                transition-all
               "
             >
 
-              <h3 className="text-3xl font-bold">
+              <h3 className="text-3xl font-bold text-slate-800">
                 Valid Parentheses
               </h3>
 
-              <p className="mt-3 text-gray-500">
+              <p className="mt-3 text-slate-500">
                 Determine whether the input string
                 has valid matching brackets.
               </p>
 
               <div className="mt-6 space-y-4">
 
-                <div className="bg-sky-50 p-5 rounded-2xl">
-                  <h4 className="font-semibold">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-semibold text-sky-900">
                     Hint #1
                   </h4>
 
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-slate-600 mt-2">
                     Think about the most recent
                     opening bracket.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="bg-sky-50 p-5 rounded-2xl">
-                  <h4 className="font-semibold">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-semibold text-sky-900">
                     Data Structure
                   </h4>
 
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-slate-600 mt-2">
                     Stack
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="bg-sky-50 p-5 rounded-2xl">
-                  <h4 className="font-semibold">
+                <motion.div whileHover={{ scale: 1.01 }} className="bg-sky-50/80 p-5 rounded-2xl border border-sky-100">
+                  <h4 className="font-semibold text-sky-900">
                     Complexity
                   </h4>
 
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-sky-700 font-mono font-bold mt-2">
                     Time: O(n)
                   </p>
-                </div>
+                </motion.div>
 
               </div>
 
@@ -286,9 +326,13 @@ export default function Features() {
 
       {/* CTA */}
 
-      <section className="pb-32 px-6">
+      <section className="pb-32 px-6 relative z-10">
 
-        <div
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="
             max-w-5xl
             mx-auto
@@ -307,7 +351,7 @@ export default function Features() {
             className="
               text-4xl
               md:text-5xl
-              font-bold
+              font-extrabold
             "
           >
             Ready to Level Up?
@@ -318,7 +362,9 @@ export default function Features() {
             Start mastering problem solving.
           </p>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.95 }}
             className="
               mt-8
               bg-white
@@ -327,14 +373,15 @@ export default function Features() {
               py-4
               rounded-2xl
               font-semibold
-              hover:scale-105
+              shadow-lg
               transition
+              cursor-pointer
             "
           >
             Try AI Coach
-          </button>
+          </motion.button>
 
-        </div>
+        </motion.div>
 
       </section>
 
