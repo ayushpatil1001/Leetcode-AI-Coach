@@ -35,8 +35,10 @@ export default function Navbar() {
         const username = user?.leetcode_username || user?.leetcodeUsername || "PurpleCrayon";
         const data = await getDashboard(username);
         const calendarData = data?.calendar?.matchedUser?.userCalendar || {};
-        const streak = calendarData.realtimeStreak ?? calendarData.streak ?? calendarData.totalActiveDays ?? 7;
-        setStreakCount(streak);
+        const streak = calendarData.realtimeStreak || calendarData.streak || calendarData.totalActiveDays || 7;
+        if (streak > 0) {
+          setStreakCount(streak);
+        }
       } catch (err) {
         console.warn("Could not fetch streak for navbar:", err);
       }

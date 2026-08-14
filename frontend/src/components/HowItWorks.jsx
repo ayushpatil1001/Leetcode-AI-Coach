@@ -94,7 +94,7 @@ export default function HowItWorks() {
                   2
                 </div>
                 <h3 className="text-3xl font-extrabold text-slate-800">
-                  4-Stage Animated Deep Analysis
+                  4-Stage Deep Analysis
                 </h3>
 
                 <p className="mt-4 text-slate-500 leading-relaxed text-base">
