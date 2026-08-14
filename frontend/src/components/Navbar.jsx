@@ -2,8 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import { User, LogOut } from "lucide-react";
+import { User, LogOut, Flame } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { getDashboard } from "../services/dashboardService";
 
 export default function Navbar() {
   const location = useLocation();
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [streakCount, setStreakCount] = useState(7);
   const profileMenuRef = useRef(null);
 
   // Smooth scroll listener to trigger navbar shrinking
@@ -25,6 +27,22 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // Fetch real LeetCode realtime streak for logged-in user or demo
+  useEffect(() => {
+    async function fetchUserStreak() {
+      try {
+        const username = user?.leetcode_username || user?.leetcodeUsername || "PurpleCrayon";
+        const data = await getDashboard(username);
+        const calendarData = data?.calendar?.matchedUser?.userCalendar || {};
+        const streak = calendarData.realtimeStreak ?? calendarData.streak ?? calendarData.totalActiveDays ?? 7;
+        setStreakCount(streak);
+      } catch (err) {
+        console.warn("Could not fetch streak for navbar:", err);
+      }
+    }
+    fetchUserStreak();
+  }, [user]);
 
   // Close profile dropdown when clicking outside
   useEffect(() => {
@@ -131,6 +149,27 @@ export default function Navbar() {
 
             {/* Right Side Controls */}
             <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+              {/* Flame Symbol & Number Badge - Tracing Cursor shows "LeetCode Streak" */}
+              <motion.div
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative group cursor-pointer"
+              >
+                <div
+                  className={`rounded-xl bg-gradient-to-r from-amber-500/10 via-orange-500/15 to-sky-500/10 border border-amber-300/80 text-amber-800 flex items-center gap-1 shadow-2xs font-extrabold transition-all duration-300 ${
+                    scrolled ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-xs"
+                  }`}
+                >
+                  <Flame className="w-4 h-4 text-amber-500 fill-amber-500 animate-pulse" />
+                  <span className="tracking-tight font-extrabold">{streakCount}</span>
+                </div>
+
+                {/* Cursor Hover Tooltip */}
+                <div className="absolute top-full mt-2.5 left-1/2 -translate-x-1/2 hidden group-hover:flex items-center bg-slate-900 text-white text-[11px] font-extrabold py-1.5 px-3 rounded-xl shadow-2xl whitespace-nowrap z-50 border border-amber-400/40 pointer-events-none">
+                  LeetCode Streak: {streakCount} {streakCount === 1 ? "Day" : "Days"}
+                </div>
+              </motion.div>
+
               {!user ? (
                 <div className="flex items-center gap-2.5">
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
@@ -235,6 +274,17 @@ export default function Navbar() {
           {/* Mobile Dropdown Menu */}
           {mobileMenuOpen && (
             <div className="lg:hidden mt-4 pt-4 border-t border-sky-100">
+              {/* Clean Mobile Streak Badge */}
+              <div className="flex items-center justify-between px-3.5 py-2.5 bg-gradient-to-r from-amber-50 to-sky-50 rounded-xl border border-amber-200 mb-3">
+                <div className="flex items-center gap-2">
+                  <Flame className="w-4 h-4 text-amber-500 fill-amber-500 animate-pulse" />
+                  <span className="text-xs font-extrabold text-amber-800">LeetCode Streak</span>
+                </div>
+                <span className="text-xs font-extrabold text-amber-700 bg-white px-2.5 py-0.5 rounded-lg border border-amber-200">
+                  {streakCount} {streakCount === 1 ? "Day" : "Days"}
+                </span>
+              </div>
+
               <div className="flex flex-col gap-3">
                 {navItems.map((item) => (
                   <Link

@@ -12,6 +12,24 @@ import {
   FaLightbulb,
 } from "react-icons/fa";
 
+const featureItems = [
+  {
+    icon: <FaLightbulb />,
+    title: "Progressive Hints",
+    description: "Get guided hints one step at a time without revealing the full answer.",
+  },
+  {
+    icon: <FaBrain />,
+    title: "AI Thinking Coach",
+    description: "Learn how experienced engineers approach and break down coding problems.",
+  },
+  {
+    icon: <FaChartLine />,
+    title: "Progress Tracking",
+    description: "Track solved problems, streaks, weak topics and overall growth.",
+  },
+];
+
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-sky-50/40 via-white to-slate-50 overflow-hidden">
@@ -34,7 +52,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight">
@@ -48,25 +66,21 @@ export default function Home() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-
-            <FeatureCard
-              icon={<FaLightbulb />}
-              title="Progressive Hints"
-              description="Get guided hints one step at a time without revealing the full answer."
-            />
-
-            <FeatureCard
-              icon={<FaBrain />}
-              title="AI Thinking Coach"
-              description="Learn how experienced engineers approach and break down coding problems."
-            />
-
-            <FeatureCard
-              icon={<FaChartLine />}
-              title="Progress Tracking"
-              description="Track solved problems, streaks, weak topics and overall growth."
-            />
-
+            {featureItems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
+              >
+                <FeatureCard
+                  icon={item.icon}
+                  title={item.title}
+                  description={item.description}
+                />
+              </motion.div>
+            ))}
           </div>
 
         </div>
@@ -80,10 +94,10 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.94, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="
               liquid-glass
               rounded-[40px]
@@ -119,6 +133,7 @@ export default function Home() {
                   shadow-lg
                   transition-all
                   duration-300
+                  text-sm
                 "
               >
                 Try AI Coach ⚡
